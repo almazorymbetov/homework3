@@ -2,7 +2,7 @@ public class MyHashTable {
     private class HashNode<K,V>{
 
     }
-    private HashNode<K,V>[] chainArray;
+    private HashNode<K,V>[] Object[];
     private int M = 11;
     private int size;
     public MyHashTable(){
