@@ -1,28 +1,29 @@
-import javax.swing.*;
 import java.util.LinkedList;
 
-public class MyHashTable {
-    private class HashNode<K,V>{
-        private K key;
+public class MyHashTable<K,V> {
+    private static class HashNode<K,V>{
+        private final K key;
         private V value;
-        private HashNode<K,V> next;
+        private final HashNode<K,V> next;
+        public HashNode(K key,V value){
+            this.key=key;
+            this.value=value;
+            this.next=null;
+        }
     }
-    private HashNode<K,V>[] Object[];
+    private final LinkedList<HashNode<K,V>>[] table;
     private int M = 11;
     private int size;
-    public MyHashTable(){
-        this(M);
-    }
     public MyHashTable(int M){
-        table = new LinkedList[M];
+        this.M=M;
+        table =(LinkedList<HashNode<K,V>>[]) new LinkedList[M];
         for(int i=0;i<M;i++){
             table[i]=new LinkedList<>();
         }
         size=0;
     }
     private int hash(K key){
-        return Math.abs(key.hashCode())%table.length;
-
+        return Math.abs(key.hashCode())%M;
     }
     public void put(K key,V value){
         int index=hash(key);
@@ -39,12 +40,12 @@ public class MyHashTable {
     public V get(K key){
         int index=hash(key);
         LinkedList<HashNode<K,V>> list = table[index];
-        for(HashNode<K,V> node:list0{)
+        for(HashNode<K,V> node:list){
             if(node.key.equals(key)){
                 return node.value;
             }
-        return null;
         }
+        return null;
     }
     public V remove(K key){
         int index=hash(key);
@@ -67,7 +68,6 @@ public class MyHashTable {
             }
         }
         return false;
-
     }
     public K getKey(V value){
         for(LinkedList<HashNode<K,V>> list:table){
@@ -78,6 +78,5 @@ public class MyHashTable {
             }
         }
         return null;
-
     }
 }
