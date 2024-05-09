@@ -8,7 +8,7 @@ public class HashNode<K,V>{
         this.next=null;
     }
     @Override
-    public String toStr(){
+    public String toString(){
         return "{" + key + " " + value + "}";
     }
 }
