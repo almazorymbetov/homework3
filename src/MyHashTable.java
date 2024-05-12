@@ -11,7 +11,7 @@ public class MyHashTable<K,V> {
             this.next=null;
         }
     }
-    private final LinkedList<HashNode<K,V>>[] table;
+    public final LinkedList<HashNode<K,V>>[] table;
     private int M = 11;
     private int size;
     public MyHashTable(int M){

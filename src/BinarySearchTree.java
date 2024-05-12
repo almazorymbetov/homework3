@@ -1,7 +1,22 @@
 import java.util.LinkedList;
 import java.util.Queue;
 public class BinarySearchTree <K extends Comparable<K>,V>{
+    private int size;
     private Node root;
+    public class iteration{
+        public K key;
+        public V value;
+        public iteration(K key,V value){
+            this.key=key;
+            this.value=value;
+        }
+        public K getKey(){
+            return key;
+        }
+        public V getValue(){
+            return value;
+        }
+    }
     private class Node{
         private K key;
         private V val;
@@ -46,6 +61,9 @@ public class BinarySearchTree <K extends Comparable<K>,V>{
     public void delete(K key){
         root =delete(root,key);
     }
+    public int size(){
+        return size;
+    }
     private Node delete(Node x,K key){
         int comp=key.compareTo(x.key);
         if(comp<0){
@@ -61,8 +79,17 @@ public class BinarySearchTree <K extends Comparable<K>,V>{
         }
         return x;
     }
-    public Iterable<K> iterator(){
-        Queue<K> keys=new LinkedList<>();
+    public Iterable<iteration> iterator(){
+        Queue<iteration> keys=new LinkedList<>();
+        inorder(root,keys);
         return keys;
+    }
+    private void inorder(Node x,Queue<iteration> keys){
+        if(x==null){
+            return;
+        }
+        inorder(x.left,keys);
+        keys.add(new iteration(x.key,x.val));
+        inorder(x.right,keys);
     }
 }
