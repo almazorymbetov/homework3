@@ -15,6 +15,10 @@ public class BinarySearchTree <K extends Comparable<K>,V>{
         root=put(root,key,val);
     }
     private Node put(Node x,K key,V val){
+
+        if(x==null){
+            return new Node(key,val);
+        }
         int comp=key.compareTo(x.key);
         if(comp<0){
             x.left=put(x.left,key,val);
